@@ -16,7 +16,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Pontos Turísticos',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+  colorScheme: ColorScheme.fromSeed(
+    seedColor: Color(0xFF173B63),
+      ),
+       scaffoldBackgroundColor: Color(0xFFF4F7FB),
       ),
       home: Catalogo(),
     );
@@ -87,6 +90,8 @@ class _CatalogoState extends State<Catalogo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF173B63),
+        foregroundColor: Colors.white,
         title: Text('Pontos Turísticos de Santos - Luciara Pereira'),
         centerTitle: true,
       ),

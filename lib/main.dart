@@ -170,111 +170,161 @@ _linhaPontos(int i) {
 }
 
 
- _cartaoPonto(int i) {
+
+Widget _cartaoPonto(int i) {
   return Container(
-    height: 200,
-    width: double.infinity,
-    margin: EdgeInsets.only(bottom: 10),
-    padding: EdgeInsets.all(6),
+    margin: EdgeInsets.only(bottom: 12),
     decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(14),
       border: Border.all(
-        color: const Color.fromARGB(255, 2, 72, 129),
+        color: Color(0xFFE1E8F0),
       ),
-      borderRadius: BorderRadius.circular(10),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.04),
+          blurRadius: 5,
+          offset: Offset(0, 2),
+        ),
+      ],
     ),
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          nomes[i],
-          textAlign: TextAlign.center,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.bold,
+        ClipRRect(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(14),
           ),
-        ),
-        SizedBox(height: 2),
-        Text(
-          cidades[i],
-          style: TextStyle(fontSize: 10),
-        ),
-        SizedBox(height: 4),
-        Expanded(
-          child: Image.network(
-            imagens[i],
+          child: SizedBox(
+            height: 145,
             width: double.infinity,
-            fit: BoxFit.contain,
-            webHtmlElementStrategy:
-                WebHtmlElementStrategy.fallback,
-            errorBuilder: (context, error, stackTrace) {
-              return Center(
-                child: Text(
-                  'Imagem indisponível',
-                  style: TextStyle(fontSize: 10),
-                ),
-              );
-            },
+            child: Image.network(
+              imagens[i],
+              fit: BoxFit.cover,
+              webHtmlElementStrategy:
+                  WebHtmlElementStrategy.fallback,
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  color: Color(0xFFEAF0F6),
+                  child: Center(
+                    child: Text(
+                      'Imagem indisponível',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.black54,
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
         ),
-        SizedBox(height: 4),
-        Text(
-          descricoes[i],
-          textAlign: TextAlign.center,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(fontSize: 9),
-        ),
-        SizedBox(height: 2),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Checkbox(
-                  value: favoritos[i],
-                  visualDensity: VisualDensity.compact,
-                  materialTapTargetSize:
-                      MaterialTapTargetSize.shrinkWrap,
-                  onChanged: (valor) {
-                    setState(() {
-                      favoritos[i] = valor!;
-                    });
-                  },
+        Padding(
+          padding: EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                nomes[i],
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF173B63),
                 ),
-                Text(
-                  'Favorito',
-                  style: TextStyle(fontSize: 10),
+              ),
+              SizedBox(height: 5),
+              Row(
+                children: [
+                  Icon(
+                    Icons.location_on,
+                    size: 16,
+                    color: Color(0xFF537A9E),
+                  ),
+                  SizedBox(width: 4),
+                  Text(
+                    '${cidades[i]}, SP',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.black54,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              Text(
+                descricoes[i],
+                style: TextStyle(
+                  fontSize: 12,
+                  height: 1.4,
+                  color: Color(0xFF454F5B),
                 ),
-              ],
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Checkbox(
-                  value: visitados[i],
-                  visualDensity: VisualDensity.compact,
-                  materialTapTargetSize:
-                      MaterialTapTargetSize.shrinkWrap,
-                  onChanged: (valor) {
-                    setState(() {
-                      visitados[i] = valor!;
-                    });
-                  },
-                ),
-                Text(
-                  'Visitado',
-                  style: TextStyle(fontSize: 10),
-                ),
-              ],
-            ),
-          ],
+              ),
+              SizedBox(height: 10),
+              Divider(
+                height: 1,
+                color: Color(0xFFE8EDF2),
+              ),
+              SizedBox(height: 6),
+              Row(
+                children: [
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Checkbox(
+                          value: favoritos[i],
+                          activeColor: Color(0xFF173B63),
+                          visualDensity: VisualDensity.compact,
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          onChanged: (valor) {
+                            setState(() {
+                              favoritos[i] = valor!;
+                            });
+                          },
+                        ),
+                        Flexible(
+                          child: Text(
+                            'Favorito',
+                            style: TextStyle(fontSize: 12),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Checkbox(
+                          value: visitados[i],
+                          activeColor: Color(0xFF173B63),
+                          visualDensity: VisualDensity.compact,
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          onChanged: (valor) {
+                            setState(() {
+                              visitados[i] = valor!;
+                            });
+                          },
+                        ),
+                        Flexible(
+                          child: Text(
+                            'Visitado',
+                            style: TextStyle(fontSize: 12),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ],
     ),
   );
 }
+
 }

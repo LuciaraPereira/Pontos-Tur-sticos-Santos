@@ -103,6 +103,35 @@ class _CatalogoState extends State<Catalogo> {
     return ListView(
       padding: EdgeInsets.all(10),
       children: [
+        Container(
+  margin: EdgeInsets.only(bottom: 16),
+  padding: EdgeInsets.all(16),
+  decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(12),
+  ),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        'Explore Santos',
+        style: TextStyle(
+          fontSize: 22,
+          fontWeight: FontWeight.bold,
+          color: Color(0xFF173B63),
+        ),
+      ),
+      SizedBox(height: 6),
+      Text(
+        'Descubra lugares históricos e culturais da cidade.',
+        style: TextStyle(
+          fontSize: 14,
+          color: Colors.black54,
+        ),
+      ),
+    ],
+  ),
+),
         for (int i = 0; i < nomes.length; i += 2)
           _linhaPontos(i),
       ],

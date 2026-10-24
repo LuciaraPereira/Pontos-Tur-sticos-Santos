@@ -87,7 +87,7 @@ class _CatalogoState extends State<Catalogo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pontos Turísticos de Santos - SP'),
+        title: Text('Pontos Turísticos de Santos - Luciara Pereira'),
         centerTitle: true,
       ),
       body: _body(),
